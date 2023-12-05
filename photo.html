@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo</title>
+    <link rel="stylesheet" href="//unpkg.com/purecss@2.0.3/build/pure-min.css">
+    <style>
+        body {
+            background-color: #333;
+        }
+
+        .img-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .img-box img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="img-box">
+        <img :src="data.url" alt="">
+    </div>
+    <script src="//unpkg.com/petite-vue"></script>
+    <script>
+        const search = new URLSearchParams(window.location.search)
+        const url = search.get('url')
+
+        const data = PetiteVue.reactive({
+            url
+        })
+        PetiteVue.createApp({
+            data
+        }).mount()
+    </script>
+</body>
+
+</html>

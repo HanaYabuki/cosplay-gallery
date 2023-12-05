@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//unpkg.com/purecss@2.0.3/build/pure-min.css">
+    <link rel="stylesheet" href="//unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Cosplay Gallery</title>
+</head>
+
+<body>
+    <div class="header">
+        <div>Cosplay Gallery</div>
+    </div>
+    <div class="container">
+        <div class="title-h2">
+            场照
+            <span>漫展现场</span>
+        </div>
+        <hr />
+        <div class="pure-g">
+            <div class="pure-u-1-1 pure-u-sm-1-2 pure-u-md-1-3 pure-u-lg-1-4" v-for="item in data.list1">
+                <div class="card">
+                    <div class="img-container">
+                        <a :href="item.link">
+                            <img :src="item.photosSrc[0]" :alt="item.title">
+                        </a>
+                    </div>
+                    <div class="title"><a :href="item.link">{{item.title}}</a>
+                    </div>
+                    <div class="info">{{item.date}}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="title-h2">
+            正片
+            <span>棚拍/外景</span>
+        </div>
+        <div class="pure-g">
+            <div class="pure-u-1-1 pure-u-sm-1-2 pure-u-md-1-3 pure-u-lg-1-4" v-for="item in data.list2">
+                <div class="card">
+                    <div class="img-container">
+                        <a :href="item.link">
+                            <img :src="item.photosSrc[0]" :alt="item.title">
+                        </a>
+                    </div>
+                    <div class="title"><a :href="item.link">{{item.title}}</a>
+                    </div>
+                    <div class="info">{{item.date}}</div>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div class="footer">
+        <div>Powered by Cosplay-Gallery / Copyright&copy;2023-2099 / 会唱歌的花枝丸</div>
+    </div>
+
+    <script src="//unpkg.com/petite-vue"></script>
+    <script src="/main.js"></script>
+    <script>
+        const rootUrl = 'info.json'
+
+        const data = PetiteVue.reactive({
+            list1: [],
+            list2: []
+        })
+
+        view().then(v => {
+            data.list1 = v.filter(i => i.tag.indexOf('正片') < 0)
+            data.list2 = v.filter(i => i.tag.indexOf('正片') >= 0)
+        })
+
+        PetiteVue.createApp({
+            data
+        }).mount()
+    </script>
+</body>
+
+</html>
