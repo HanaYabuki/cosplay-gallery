@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo</title>
+    <link rel="stylesheet" href="//unpkg.com/purecss@2.0.3/build/pure-min.css">
+    <style>
+        body {
+            background-color: #333;
+        }
+
+        .img-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .img-box img {
+            max-width: 95vw;
+            max-height: 90vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="img-box" v-for="item in data.gallery.photosSrc">
+        <img :src="item.raw" :alt="ata.gallery.title" v-if="hd">
+        <img :src="item.fast" :alt="data.gallery.title" v-else>
+    </div>
+    <script src="//unpkg.com/petite-vue"></script>
+    <script src="main.js"></script>
+    <script>
+        const search = new URLSearchParams(window.location.search)
+        const gallery_name = search.get('g')
+        const hd = search.get('hd') === 'true'
+        console.log(hd)
+
+        const data = PetiteVue.reactive({
+            gallery: { photosSrc: ['#'] }
+        })
+
+        view().then(v => {
+            data.gallery = v.filter(i => i.title === gallery_name)[0]
+        })
+
+        PetiteVue.createApp({
+            data,
+            hd: hd
+        }).mount()
+    </script>
+</body>
+
+</html>

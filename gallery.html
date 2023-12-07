@@ -26,7 +26,7 @@
                         <img :src="data.gallery.photosSrc[0].fast" alt="">
                     </div>
                 </div>
-                <div class="pure-u-1-1 pure-u-sm-1-2 pure-u-md-2-3 pure-u-lg-3-4">
+                <div class="pure-u-1-1 pure-u-sm-1-2 pure-u-md-2-3 pure-u-lg-2-4">
                     <ul>
                         <li>标题：{{data.gallery.title}}</li>
                         <li>时间：{{data.gallery.date}}</li>
@@ -36,7 +36,9 @@
                     <p class="info">{{data.gallery.info}}</p>
                 </div>
             </div>
-            <div class="title-h2"></div>
+            <hr />
+            <a :href="'/slide.html?hd=false&g=' + data.gallery.title"><button class="pure-button">下拉浏览</button></a>
+            <a :href="'/slide.html?hd=true&g=' + data.gallery.title"><button class="pure-button">原图浏览</button></a>
         </div>
         <hr />
         <div class="pure-g">

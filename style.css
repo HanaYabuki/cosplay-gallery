@@ -2,6 +2,10 @@ a {
     text-decoration: none;
 }
 
+body {
+    position: relative;
+}
+
 .header,
 .footer {
     margin: 0;
@@ -34,7 +38,6 @@ a {
 .container {
     margin: 0 auto;
     max-width: 1200px;
-    min-height: 100vh;
     padding: 0 2rem;
 }
 
@@ -86,7 +89,7 @@ a {
 .panel {
     border: 4px solid #ccc;
     margin: .5rem 0;
-    padding: 0 .5rem;
+    padding: .5rem;
 }
 
 .panel .panel-info {
